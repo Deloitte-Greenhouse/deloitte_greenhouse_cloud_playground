@@ -30,5 +30,6 @@ steps:
       - '1'
       - '--max-instances'
       - '1'
+      - '--allow-unauthenticated'
 options:
   logging: CLOUD_LOGGING_ONLY
