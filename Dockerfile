@@ -1,0 +1,9 @@
+FROM europe-west1-docker.pkg.dev/32683298196/docker-repo/kirby-backend:testing
+
+COPY index.php /data/web_root/index.php
+
+# Expose port 80 for Nginx
+EXPOSE 8080
+
+# Start Supervisor to manage processes
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
