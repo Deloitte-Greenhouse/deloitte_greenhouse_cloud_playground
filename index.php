@@ -3,7 +3,7 @@
 include __DIR__ . '/kirby/bootstrap.php';
 
 $root = '/data/persistent_volume/kirby_files';
-$url = 'https://kirby-backend-32683298196.europe-west1.run.app';
+$url = 'https://nfs-test-client-32683298196.europe-west1.run.app';
 
 $kirby = new Kirby([
     'roots' => [
