@@ -1,4 +1,15 @@
 steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'europe-west1-docker.pkg.dev/$PROJECT_ID/docker-repo/nfs-test-client:testing'
+      - "--file=./Dockerfile_nfs_test_client"
+      - '.'
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'europe-west1-docker.pkg.dev/$PROJECT_ID/docker-repo/nfs-test-client:testing'
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
@@ -6,7 +17,7 @@ steps:
       - 'deploy'
       - 'nfs-test-client'
       - '--image'
-      - 'europe-west1-docker.pkg.dev/$PROJECT_ID/docker-repo/kirby-backend:testing'
+      - 'europe-west1-docker.pkg.dev/$PROJECT_ID/docker-repo/nfs-test-client:testing'
       - '--region'
       - 'europe-west1'
       - '--network=deloitte-greenhouse-2024-nfs'
