@@ -1,0 +1,36 @@
+steps:
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'nfs-test-client'
+      - '--image'
+      - 'europe-west1-docker.pkg.dev/$PROJECT_ID/docker-repo/kirby-backend:testing'
+      - '--region'
+      - 'europe-west1'
+#      - '--add-volume'
+#      - 'name=volume-kirby-backend-1,type=cloud-storage,bucket=bucket-kirby-backend-1'
+#      - '--add-volume-mount'
+#      - 'volume=volume-kirby-backend-1,mount-path=/data/persistent_volume'
+      - '--allow-unauthenticated'
+      - '--min-instances'
+      - '1'
+      - '--max-instances'
+      - '1'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'beta'
+      - 'run'
+      - 'services'
+      - 'update'
+      - 'nfs-test-client'
+      - '--execution-environment'
+      - 'gen2'
+      - '--region'
+      - 'europe-west1'
+#      - '--add-volume'
+#      - 'name=volume-kirby-backend-1,type=cloud-storage,bucket=bucket-kirby-backend-1,mount-options=implicit-dirs=true;rename-dir-limit=1000;client-protocol=grpc;stat-cache-ttl=1h;type-cache-ttl=1h'  # ;kernel-list-cache-ttl-secs=120'  # cache-dir=/tmp/gcsfuse-cache'
+options:
+  logging: CLOUD_LOGGING_ONLY
