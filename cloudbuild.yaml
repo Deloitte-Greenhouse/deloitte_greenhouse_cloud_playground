@@ -9,7 +9,8 @@ steps:
       - 'europe-west1-docker.pkg.dev/$PROJECT_ID/docker-repo/kirby-backend:testing'
       - '--region'
       - 'europe-west1'
-#      - '--add-volume'
+      - '--network=deloitte-greenhouse-2024-nfs' # e.g., default
+      - '--subnet=deloitte-greenhouse-2024-nfs-subnet'   # e.g., default#      - '--add-volume'
 #      - 'name=volume-kirby-backend-1,type=cloud-storage,bucket=bucket-kirby-backend-1'
 #      - '--add-volume-mount'
 #      - 'volume=volume-kirby-backend-1,mount-path=/data/persistent_volume'
